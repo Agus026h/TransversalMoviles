@@ -16,7 +16,15 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
+        val properties = org.jetbrains.kotlin.konan.properties.Properties()
+        val localPropertiesFile = project.rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            localPropertiesFile.inputStream().use { properties.load(it) }
+        }
+        val apiKey = properties.getProperty("API_KEY") ?: ""
+        manifestPlaceholders["meta_api_key"] = apiKey
 
+        buildConfigField("String", "API_KEY", "\"$apiKey\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -35,6 +43,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -53,6 +62,7 @@ dependencies {
     implementation(libs.fragment)
     implementation(libs.cardview)
     implementation(libs.legacy.support.v4)
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
