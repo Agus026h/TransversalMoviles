@@ -33,7 +33,7 @@ public class LoginActivityViewModel extends AndroidViewModel {
                 public void onResponse(Call<String> call, retrofit2.Response<String> response) {
                     if (response.isSuccessful()) {
                         String token = response.body();
-                        Log.d("token", token);
+                        ApiClient.recuperarToken(context, token);
                         Intent intent = new Intent(context, MainActivity.class);
                         intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);

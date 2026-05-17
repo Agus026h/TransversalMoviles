@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_transform">
+    app:startDestination="@+id/nav_ubicacion">
 
     <fragment
         android:id="@+id/nav_transform"
@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_transform" />
 
     <fragment
-        android:id="@+id/nav_reflow"
-        android:name="com.agus.transversalmoviles.ui.reflow.ReflowFragment"
-        android:label="@string/menu_perfil"
-        tools:layout="@layout/fragment_reflow" />
+        android:id="@+id/nav_ubicacion"
+        android:name="com.agus.transversalmoviles.ui.ubicacion.UbicacionFragment"
+        android:label="@string/menu_ubicacion"
+        tools:layout="@layout/fragment_ubicacion" />
 
     <fragment
         android:id="@+id/nav_slideshow"
@@ -28,4 +28,22 @@
         android:name="com.agus.transversalmoviles.ui.settings.SettingsFragment"
         android:label="@string/menu_contrato"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/nav_perfil"
+        android:name="com.agus.transversalmoviles.ui.perfil.PerfilFragment"
+        android:label="@string/menu_perfil"
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_nav_perfil_to_perfilCambiarClaveFragment"
+            app:destination="@id/perfilCambiarClaveFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/perfilCambiarClaveFragment"
+        android:name="com.agus.transversalmoviles.ui.perfil.PerfilCambiarClaveFragment"
+        android:label="fragment_perfil_cambiar_clave"
+        tools:layout="@layout/fragment_perfil_cambiar_clave" >
+        <action
+            android:id="@+id/action_perfilCambiarClaveFragment_to_nav_perfil"
+            app:destination="@id/nav_perfil" />
+    </fragment>
 </navigation>

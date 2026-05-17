@@ -3,15 +3,20 @@ package com.agus.transversalmoviles.request;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.agus.transversalmoviles.modelo.Propietario;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public class ApiClient {
     public final static String BASE_URL = "https://capacitacion.alwaysdata.net/";
@@ -31,14 +36,27 @@ public class ApiClient {
         @FormUrlEncoded
         @POST("api/Propietarios/login")
         Call<String> loginForm(@Field("Usuario") String usuario, @Field("Clave") String clave);
+        @FormUrlEncoded
+        @PUT("api/Propietarios/changePassword")
+        Call<Void> changePassword(@Header("Authorization") String token,
+                                    @Field("currentPassword") String claveActual,
+                                    @Field("newPassword") String claveNueva);
 
+        @PUT("api/Propietarios/actualizar")
+        Call<Propietario> putPropietario(@Header("Authorization") String token, @Body Propietario propietario);
+
+        @GET("api/Propietarios")
+        Call<Propietario> getPropietarios(@Header("Authorization")String token);
+
+        //@GET("api/Inmuebles")
+        //Call<Inmueble> getInmuebles(@Header("Authorization") String token);
 
     }
     //metodo para obtener/guardar token
     public static void recuperarToken(Context context, String token) {
         SharedPreferences sp = context.getSharedPreferences("token.xml", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString("token", token);
+        editor.putString("token", "Bearer "+ token);
         editor.apply();
         // como es asincrono no uso commit
     }
