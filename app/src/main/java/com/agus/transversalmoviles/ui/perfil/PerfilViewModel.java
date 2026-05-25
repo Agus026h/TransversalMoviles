@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -18,6 +19,7 @@ import retrofit2.Response;
 
 public class PerfilViewModel extends AndroidViewModel {
     private MutableLiveData<Propietario> propietarioMutable;
+    private MutableLiveData<Boolean> esEditable = new MutableLiveData<>(false);
 
     public PerfilViewModel(@NonNull Application application) {
         super(application);
@@ -29,6 +31,14 @@ public class PerfilViewModel extends AndroidViewModel {
             propietarioMutable = new MutableLiveData<>();
         }
         return propietarioMutable;
+    }
+
+    public LiveData<Boolean> getEsEditable(){
+        return esEditable;
+    }
+
+    public void setEsEditable(boolean editable){
+        esEditable.setValue(editable);
     }
 
     public void cargarPerfil(){
@@ -80,6 +90,7 @@ public class PerfilViewModel extends AndroidViewModel {
                         Propietario prop = response.body();
                         propietarioMutable.postValue(prop);
                         Toast.makeText(getApplication(), "Propietario Actualizado", Toast.LENGTH_SHORT).show();
+                        setEsEditable(false);
                     }else{
                         Toast.makeText(getApplication(), "No se pudo actualizar el propietario", Toast.LENGTH_SHORT).show();
                         Log.d("error", response.message());//agrgar mensajes de error

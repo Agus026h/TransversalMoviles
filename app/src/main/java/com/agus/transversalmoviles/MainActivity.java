@@ -43,7 +43,9 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_transform,
                 R.id.nav_ubicacion,
                 R.id.nav_slideshow,
+                R.id.nav_inmueble,
                 R.id.nav_perfil
+
 
 
         )

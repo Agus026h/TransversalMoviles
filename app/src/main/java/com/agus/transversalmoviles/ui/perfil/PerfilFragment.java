@@ -46,6 +46,22 @@ public class PerfilFragment extends Fragment {
             }
         });
         vm.cargarPerfil();
+        vm.getEsEditable().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean edit) {
+                binding.etNombre.setEnabled(edit);
+                binding.etApellido.setEnabled(edit);
+                binding.etDni.setEnabled(edit);
+                binding.etTelefono.setEnabled(edit);
+                binding.etEmail.setEnabled(edit);
+
+                if(edit){
+                    binding.btnEditar.setText("Guardar");
+                }else{
+                    binding.btnEditar.setText("Editar");
+                }
+            }
+        });
         binding.btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,12 +73,7 @@ public class PerfilFragment extends Fragment {
                             binding.etEmail.getText().toString());
                     //binding.btnEditar.setText("Editar");
                 }else{
-                    binding.etApellido.setEnabled(true);
-                    binding.etDni.setEnabled(true);
-                    binding.etEmail.setEnabled(true);
-                    binding.etNombre.setEnabled(true);
-                    binding.etTelefono.setEnabled(true);
-                    binding.btnEditar.setText("Guardar");
+                    vm.setEsEditable(true);
                 }
             }
         });
