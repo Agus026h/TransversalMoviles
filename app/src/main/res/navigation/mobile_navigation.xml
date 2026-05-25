@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/nav_inmueble"
         android:name="com.agus.transversalmoviles.ui.inmueble.InmuebleFragment"
-        android:label="fragment_inmueble"
+        android:label="Lista de Inmuebles"
         tools:layout="@layout/fragment_inmueble" >
         <action
             android:id="@+id/action_nav_inmueble_to_inmuebleDetalleFragment"
