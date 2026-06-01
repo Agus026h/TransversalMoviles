@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.agus.transversalmoviles.Dialogos;
 import com.agus.transversalmoviles.R;
 import com.agus.transversalmoviles.databinding.FragmentInmuebleAgregarBinding;
 
@@ -41,6 +42,13 @@ public class InmuebleAgregarFragment extends Fragment {
         });
         b.btnCargarImagen.setOnClickListener(view->{
             selector.launch(intent);
+        });
+        b.etTipo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Dialogos.mostrarDialogoTipoInmueble(getContext(), b.etTipo);
+            }
         });
         b.btnGuardarInmueble.setOnClickListener(view->{
             vm.cargarInmueble(

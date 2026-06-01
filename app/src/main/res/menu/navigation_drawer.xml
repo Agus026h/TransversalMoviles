@@ -8,26 +8,27 @@
 
         <item
             android:id="@+id/nav_perfil"
-            android:icon="@drawable/avatar_1"
+            android:icon="@drawable/perfil"
             android:title="@string/menu_perfil" />
 
         <item
             android:id="@+id/nav_ubicacion"
-            android:icon="@drawable/ic_gallery_black_24dp"
+            android:icon="@drawable/place"
             android:title="@string/menu_ubicacion" />
 
         <item
             android:id="@+id/nav_inmueble"
-            android:icon="@drawable/ic_camera_black_24dp"
-            android:title="@string/menu_inicio" />
+            android:icon="@drawable/home"
+            android:title="@string/menu_inmueble" />
 
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_inquilino"
             android:icon="@drawable/ic_slideshow_black_24dp"
             android:title="@string/menu_inquilino" />
+
         <item
-            android:id="@+id/nav_settings"
-            android:icon="@android:drawable/ic_dialog_dialer"
-            android:title="@string/menu_contrato" />
+            android:id="@+id/nav_logout"
+            android:icon="@android:drawable/ic_lock_power_off"
+            android:title="Cerrar Sesion" />
     </group>
 </menu>

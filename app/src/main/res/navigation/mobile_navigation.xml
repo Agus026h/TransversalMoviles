@@ -13,16 +13,15 @@
         tools:layout="@layout/fragment_ubicacion" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.agus.transversalmoviles.ui.slideshow.SlideshowFragment"
+        android:id="@+id/nav_inquilino"
+        android:name="com.agus.transversalmoviles.ui.inquilino.InquilinoFragment"
         android:label="@string/menu_inquilino"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_inquilino" >
+        <action
+            android:id="@+id/action_nav_inquilino_to_nav_contrato"
+            app:destination="@id/nav_contrato" />
+    </fragment>
 
-    <fragment
-        android:id="@+id/nav_settings"
-        android:name="com.agus.transversalmoviles.ui.settings.SettingsFragment"
-        android:label="@string/menu_contrato"
-        tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/nav_perfil"
         android:name="com.agus.transversalmoviles.ui.perfil.PerfilFragment"
@@ -35,7 +34,7 @@
     <fragment
         android:id="@+id/perfilCambiarClaveFragment"
         android:name="com.agus.transversalmoviles.ui.perfil.PerfilCambiarClaveFragment"
-        android:label="fragment_perfil_cambiar_clave"
+        android:label="Cambiar clave"
         tools:layout="@layout/fragment_perfil_cambiar_clave" >
         <action
             android:id="@+id/action_perfilCambiarClaveFragment_to_nav_perfil"
@@ -57,14 +56,32 @@
         android:id="@+id/inmuebleDetalleFragment"
         android:name="com.agus.transversalmoviles.ui.inmueble.InmuebleDetalleFragment"
         android:label="Detalle de Inmueble"
-        tools:layout="@layout/fragment_inmueble_detalle" />
+        tools:layout="@layout/fragment_inmueble_detalle" >
+        <action
+            android:id="@+id/action_inmuebleDetalleFragment_to_nav_contrato"
+            app:destination="@id/nav_contrato" />
+    </fragment>
     <fragment
         android:id="@+id/nav_inmueble_agregar"
         android:name="com.agus.transversalmoviles.ui.inmueble.InmuebleAgregarFragment"
-        android:label="fragment_inmueble_agregar"
+        android:label="Agregar inmueble"
         tools:layout="@layout/fragment_inmueble_agregar" >
         <action
             android:id="@+id/action_nav_inmueble_agregar_to_nav_inmueble"
             app:destination="@id/nav_inmueble" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_contrato"
+        android:name="com.agus.transversalmoviles.ui.contrato.ContratoFragment"
+        android:label="Contrato"
+        tools:layout="@layout/fragment_contrato" >
+        <action
+            android:id="@+id/action_nav_contrato_to_nav_pago"
+            app:destination="@id/nav_pago" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_pago"
+        android:name="com.agus.transversalmoviles.ui.pago.PagoFragment"
+        android:label="Pagos"
+        tools:layout="@layout/fragment_pago" />
 </navigation>

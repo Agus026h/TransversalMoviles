@@ -3,7 +3,9 @@ package com.agus.transversalmoviles.request;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.agus.transversalmoviles.modelo.Contrato;
 import com.agus.transversalmoviles.modelo.Inmueble;
+import com.agus.transversalmoviles.modelo.Pago;
 import com.agus.transversalmoviles.modelo.Propietario;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -24,12 +26,13 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public class ApiClient {
     public final static String BASE_URL = "https://capacitacion.alwaysdata.net/";
 
     public static MiServicio getMiServicio(){
-        Gson gson = new GsonBuilder().setLenient().create();
+        Gson gson = new GsonBuilder().setLenient().setDateFormat("yyyy-MM-dd").create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -58,6 +61,9 @@ public class ApiClient {
         @GET("api/Inmuebles")
         Call<List<Inmueble>>getInmuebles(@Header("Authorization") String token);
 
+        @GET("api/Inmuebles/GetContratoVigente")
+        Call<List<Inmueble>>getInmueblesAlquilados(@Header("Authorization") String token);
+
         @PUT("api/Inmuebles/actualizar")
         Call<Inmueble> putInmuebleDisponible(@Header("Authorization") String token, @Body Inmueble inmueble);
 
@@ -66,6 +72,13 @@ public class ApiClient {
         Call<Inmueble> cargarInmueble(@Header("Authorization") String token,
                                       @Part MultipartBody.Part imagen,
                                       @Part("inmueble") RequestBody inmuebleBody);
+
+        @GET("api/contratos/inmueble/{id}")
+        Call<Contrato> getContrato(@Header("Authorization") String token, @Path("id") int id);
+
+        @GET("api/pagos/contrato/{id}")
+        Call<List<Pago>> getPagosContrato(@Header("Authorization") String token, @Path("id") int id);
+
 
     }
     //metodo para obtener/guardar token
