@@ -66,6 +66,15 @@ public class PerfilViewModel extends AndroidViewModel {
 
     }
 
+    public void gestionarBotonEditar(String nombre, String apellido, String dni, String telefono, String email) {
+
+        if (Boolean.TRUE.equals(esEditable.getValue())) {
+            actualizarPropietario(nombre, apellido, dni, telefono, email);
+
+        } else {
+            setEsEditable(true);
+        }
+    }
     public void actualizarPropietario(String nombre, String apellido, String dni, String telefono, String email){
         if(nombre != null && !nombre.trim().isEmpty()
                 && apellido != null && !apellido.trim().isEmpty()

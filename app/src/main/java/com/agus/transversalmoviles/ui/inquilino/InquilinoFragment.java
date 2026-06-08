@@ -33,6 +33,7 @@ public class InquilinoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
         binding = FragmentInquilinoBinding.inflate(inflater, container, false);
         vm = new ViewModelProvider(this).get(InquilinoViewModel.class);
 

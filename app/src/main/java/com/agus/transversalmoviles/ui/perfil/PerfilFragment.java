@@ -65,16 +65,13 @@ public class PerfilFragment extends Fragment {
         binding.btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(binding.btnEditar.getText().toString().toLowerCase().equals("guardar")) {
-                    vm.actualizarPropietario(binding.etNombre.getText().toString(),
-                            binding.etApellido.getText().toString(),
-                            binding.etDni.getText().toString(),
-                            binding.etTelefono.getText().toString(),
-                            binding.etEmail.getText().toString());
-                    //binding.btnEditar.setText("Editar");
-                }else{
-                    vm.setEsEditable(true);
-                }
+                vm.gestionarBotonEditar(
+                        binding.etNombre.getText().toString(),
+                        binding.etApellido.getText().toString(),
+                        binding.etDni.getText().toString(),
+                        binding.etTelefono.getText().toString(),
+                        binding.etEmail.getText().toString()
+                );
             }
         });
 
